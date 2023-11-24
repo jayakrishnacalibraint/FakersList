@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fakerslist.ResponseState
 import com.example.fakerslist.model.ApiResponse
+import com.example.fakerslist.model.Person
 import com.example.fakerslist.repository.PersonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,15 +14,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PersonsListViewModel @Inject constructor(private val personRepository: PersonRepository) : ViewModel() {
-   private  val _personLivedata =MutableLiveData<ResponseState<ApiResponse>>()
+   private  val _personLivedata =MutableLiveData<ResponseState<List<Person>>>()
 
 
-    val personLiveData:LiveData<ResponseState<ApiResponse>>
+    val personLiveData:LiveData<ResponseState<List<Person>>>
         get() = _personLivedata
 
-    fun fetchPersons() {
+    fun fetchPersons(quantity :Int) {
         viewModelScope.launch {
-            val result: ResponseState<ApiResponse> = personRepository.getAllPersons(1000)
+            val result: ResponseState<List<Person>> = personRepository.getAllPersons(quantity)
             _personLivedata.postValue(result)
         }
     }
