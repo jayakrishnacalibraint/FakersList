@@ -7,6 +7,8 @@ plugins {
     //Dagger-hilt
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -16,6 +18,7 @@ android {
     defaultConfig {
         applicationId = "com.example.fakerslist"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -83,9 +86,11 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-compiler:2.48")
 
-    implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
 
     //swipe refresh layout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
+
 
 }

@@ -9,5 +9,26 @@
         android:id="@+id/personsListFragment"
         android:name="com.example.fakerslist.fragments.PersonsListFragment"
         android:label="fragment_persons_list"
-        tools:layout="@layout/fragment_persons_list" />
+        tools:layout="@layout/fragment_persons_list">
+        <action
+            android:id="@+id/action_personsListFragment_to_personDetailsFragment"
+            app:destination="@id/personDetailsFragment">
+
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/personDetailsFragment"
+        android:name="com.example.fakerslist.fragments.PersonDetailsFragment"
+        android:label="fragment_person_details"
+        tools:layout="@layout/fragment_person_details">
+
+
+        <argument
+            android:name="personData"
+            app:argType="com.example.fakerslist.model.PersonData" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+
+    </fragment>
 </navigation>

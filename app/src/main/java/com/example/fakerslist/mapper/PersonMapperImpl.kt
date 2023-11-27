@@ -6,8 +6,10 @@ import javax.inject.Inject
 
 class PersonMapperImpl @Inject constructor() : PersonMapper {
     override fun mapToDomain(apiPerson: PersonData): Person {
-        return Person(id=apiPerson.id,
-            name="${apiPerson.firstname}${apiPerson.lastname}",
+        return Person(
+            id = apiPerson.id,
+            firstname = apiPerson.firstname,
+            lastname = apiPerson.lastname,
             email = apiPerson.email,
             image = apiPerson.image
         )
