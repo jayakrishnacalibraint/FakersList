@@ -64,19 +64,23 @@ class PersonDetailsFragment : Fragment() {
         personDetailImage.setImageBitmap(bitmap)
         personDetailsName.text = getString(R.string.person_name, name)
         personDetailEmail.text = getString(R.string.person_email, personData.email)
-        personDetailPhone.text = getString(R.string.person_phone, personData)
-        personDetailBirthday.text = getString(R.string.person_birthday, personData)
-        personDetailGender.text = getString(R.string.person_gender, personData)
-        personDetailStreet.text = getString(R.string.person_street, personData)
-        personDetailStreetName.text = getString(R.string.sperson_streetname, personData)
-        personDetailBuildingNumber.text = getString(R.string.person_buildingnumber, personData)
-        personDetailCity.text = getString(R.string.person_city, personData)
-        personDetailZipCode.text = getString(R.string.person_zipcode, personData)
-        personDetailCountry.text = getString(R.string.person_country, personData)
-        personDetailCountryCode.text = getString(R.string.person_county_code, personData)
-        personDetailLatitude.text = getString(R.string.person_latitude, personData)
-        personDetailLongitude.text = getString(R.string.person_longitude, personData)
-        personDetailWebsite.text = getString(R.string.website_website, personData)
+        personDetailPhone.text = getString(R.string.person_phone, personData.phone)
+        personDetailBirthday.text = getString(R.string.person_birthday, personData.birthday)
+        personDetailGender.text = getString(R.string.person_gender, personData.gender)
+        personDetailStreet.text = getString(R.string.person_street, personData.address.street)
+        personDetailStreetName.text =
+            getString(R.string.person_street_name, personData.address.streetName)
+        personDetailBuildingNumber.text =
+            getString(R.string.person_building_number, personData.address.buildingNumber)
+        personDetailCity.text = getString(R.string.person_city, personData.address.city)
+        personDetailZipCode.text = getString(R.string.person_zipcode, personData.address.zipcode)
+        personDetailCountry.text = getString(R.string.person_country, personData.address.country)
+        personDetailCountryCode.text =
+            getString(R.string.person_county_code, personData.address.county_code)
+        personDetailLatitude.text = getString(R.string.person_latitude, personData.address.latitude)
+        personDetailLongitude.text =
+            getString(R.string.person_longitude, personData.address.longitude)
+        personDetailWebsite.text = getString(R.string.website_website, personData.website)
     }
 
     private fun initializeViews() {

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fakerslist.ResponseState
+import com.example.fakerslist.model.Person
 import com.example.fakerslist.model.PersonData
 import com.example.fakerslist.repository.PersonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

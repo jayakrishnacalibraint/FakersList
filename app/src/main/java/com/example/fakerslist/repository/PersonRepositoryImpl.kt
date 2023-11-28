@@ -10,51 +10,21 @@ class PersonRepositoryImpl @Inject constructor(
 ) :
     PersonRepository {
     override suspend fun getAllPersons(quantity: Int): ResponseState<List<PersonData>> {
-        val maxItems = 1000
-        val subsequentFetch = 20
         val allPersons = mutableListOf<PersonData>()
 
         return try {
-
-
-            var itemsFetched = 0
-            var newQuantity = quantity
             val uniqueIds = HashSet<String>()
-
-            //
-
-            while (itemsFetched < maxItems) {
-                val response = apiService.getPerson(newQuantity)
-                val personDataList = response.data
-                val fetchedItems = personDataList.size
-                if (fetchedItems == 0) {
-                    break
-                }
-
-                for (personData in personDataList) {
-
-
-                    val personName="${personData.firstname}${personData.lastname} "
-                    if (!uniqueIds.contains(personName)) {
-                        uniqueIds.add(personName)
-                        allPersons.add(personData)
-                    }
-
-//                    if (allPersons.size == quantity) {
-//                        break;
-//                    }
-
-                }
-                itemsFetched += fetchedItems
-
-                if (itemsFetched + subsequentFetch <= maxItems) {
-                    newQuantity += subsequentFetch
-                } else {
-                    newQuantity = maxItems - itemsFetched + fetchedItems
-                }
-
-            }
-            ResponseState.Success(allPersons)
+            val response = apiService.getPerson(quantity)
+            val personDataList = response.data
+//            for (personData in personDataList) {
+//                val personName = "${personData.firstname}${personData.lastname} "
+////                if (!uniqueIds.contains(personName)) {
+////                    uniqueIds.add(personName)
+//                    allPersons.add(personData)
+////                }
+//
+//            }
+            ResponseState.Success(personDataList)
         } catch (e: Exception) {
             ResponseState.Error(e)
         }
