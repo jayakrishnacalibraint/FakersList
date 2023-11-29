@@ -3,8 +3,8 @@ package com.example.fakerslist.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-
 data class ApiResponse(val data: List<PersonData>)
+
 @Parcelize
 data class PersonData(
     val id: Int,
@@ -17,7 +17,8 @@ data class PersonData(
     val address: Address,
     val website: String,
     val image: String,
-):Parcelable
+) : Parcelable
+
 @Parcelize
 data class Address(
     val id: Int,
@@ -30,5 +31,5 @@ data class Address(
     val county_code: String,
     val latitude: String,
     val longitude: String
-):Parcelable
+) : Parcelable
 

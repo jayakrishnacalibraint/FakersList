@@ -1,5 +1,6 @@
 package com.example.fakerslist.dagger
 
+import com.example.fakerslist.Constants
 import com.example.fakerslist.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -16,10 +17,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://fakerapi.it/api/v1/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        return Retrofit.Builder().baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     @Provides

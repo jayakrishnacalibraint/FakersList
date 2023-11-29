@@ -33,7 +33,8 @@ class PersonsAdapter(@ActivityContext private val context: Context) :
         val randomColor = colors[position % colors.size]
         holder.singlePersonItemBinding.root.setCardBackgroundColor(Color.parseColor(randomColor))
 
-        val personProfilePic =BitmapHelper. generateInitialsImage(item.firstname, item.lastname, position)
+        val personProfilePic =
+            BitmapHelper.generateInitialsImage(item.firstname, item.lastname, position)
         val personName = "${item.firstname}${item.lastname}"
         val personEmail = item.email
 
@@ -44,7 +45,7 @@ class PersonsAdapter(@ActivityContext private val context: Context) :
 
         val directions =
             PersonsListFragmentDirections.actionPersonsListFragmentToPersonDetailsFragment(
-                personData = item,position=position
+                personData = item, position = position
             )
 
         holder.singlePersonItemBinding.root.setOnClickListener {
@@ -55,17 +56,14 @@ class PersonsAdapter(@ActivityContext private val context: Context) :
     }
 
 
-
-
     class PersonViewHolder(val singlePersonItemBinding: SinglePersonItemBinding) :
         RecyclerView.ViewHolder(singlePersonItemBinding.root)
 }
 
 class PersonCallback : DiffUtil.ItemCallback<PersonData>() {
     override fun areItemsTheSame(oldItem: PersonData, newItem: PersonData): Boolean {
-        val oldName = "${oldItem.firstname}${oldItem.lastname}"
-        val newName = "${newItem.firstname}${newItem.lastname}"
-        return oldName == newName
+
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: PersonData, newItem: PersonData): Boolean {

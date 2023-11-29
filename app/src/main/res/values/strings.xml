@@ -21,7 +21,7 @@
     <string name="longitude">Longitude :</string>
     <string name="website">Website :</string>
     <string name="person_name">Name :%1$s</string>
-    <string name="person_email" >Email :%1$s</string>
+    <string name="person_email">Email :%1$s</string>
     <string name="person_phone">Phone:%1$s</string>
     <string name="person_birthday">Birthday :%1$s</string>
     <string name="person_gender">Gender:%1$s</string>
@@ -37,4 +37,5 @@
     <string name="website_website">Website :%1$s</string>
     <string name="krishna">Krishna</string>
     <string name="krishna139_gmail_com">Krishna139@gmail.com</string>
+    <string name="no_more_data">No more Data</string>
 </resources>

@@ -1,12 +1,11 @@
 package com.example.fakerslist.fragments
 
-import android.graphics.Color
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -35,26 +34,29 @@ class PersonsListFragment : Fragment() {
     private lateinit var toolbar: Toolbar
     private lateinit var lazyDownProgressBar: ProgressBar
     private lateinit var lazyUpProgressBar: ProgressBar
+    private lateinit var endText: TextView
 
-  private var dataFetched =false
+    var refresh = false
     private var personList = mutableListOf<PersonData>()
 
-    private val totalFetch = 1000
+    private val initialFetch = 20
+    private var dataFetched = false
 
     private val personsListViewModel: PersonsListViewModel by viewModels()
-    private var recyclerViewState: Parcelable? = null
-    private lateinit var layoutManager :LinearLayoutManager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         fragmentPersonsListBinding = FragmentPersonsListBinding.inflate(inflater, container, false)
         initializeViews()
+        return fragmentPersonsListBinding.root
+    }
 
-        var refresh = false
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         personsAdapter = PersonsAdapter(requireContext())
-        layoutManager=LinearLayoutManager(requireContext())
+
         personListRefresher.setOnRefreshListener {
             refresh = true
             refreshData()
@@ -76,6 +78,7 @@ class PersonsListFragment : Fragment() {
                         // Display progress bar after every 20 items
                         isProgressBarVisible = true
                         showProgressBar()
+                        endText.visibility = View.GONE
 
                         // Simulate loading for a particular time
                         recyclerView.postDelayed({
@@ -89,6 +92,7 @@ class PersonsListFragment : Fragment() {
                         // Display progress bar after every 20 items
                         isProgressBarVisible = true
                         showUpProgressBar()
+                        endText.visibility = View.GONE
 
                         // Simulate loading for a particular time
                         recyclerView.postDelayed({
@@ -101,7 +105,8 @@ class PersonsListFragment : Fragment() {
                 lastVisibleItemPosition = currentVisibleItemPosition
                 if ((currentVisibleItemPosition == totalItemCount - 1) && !refresh) {
 
-                    Toast.makeText(requireContext(), "End of list", Toast.LENGTH_SHORT).show()
+                    endText.visibility = View.VISIBLE
+                    endText.text = getString(R.string.no_more_data)
 
                 }
 
@@ -110,13 +115,13 @@ class PersonsListFragment : Fragment() {
 
         })
 
-        //fetch the data
-        if (!dataFetched)
-        {
-        personsListViewModel.fetchPersons(totalFetch)}
+        if (!dataFetched) {
+            //fetch the data
+            personsListViewModel.fetchPersons(initialFetch)
+        }
 
         //observe the data
-        personsListViewModel.personLiveData.observe(viewLifecycleOwner) {
+        personsListViewModel.personLiveData.observe(requireActivity()) {
             when (it) {
                 is ResponseState.Success -> {
                     shimmerLayout.stopShimmer()
@@ -125,9 +130,10 @@ class PersonsListFragment : Fragment() {
                     personsAdapter.submitList(personList)
                     personListRefresher.isRefreshing = false
                     refresh = false
+                    dataFetched = true
                     personsListRecycler.adapter = personsAdapter
-                    personsListRecycler.layoutManager =layoutManager
-                    dataFetched=true
+                    personsListRecycler.layoutManager = LinearLayoutManager(requireContext())
+
                 }
 
                 is ResponseState.Error -> {
@@ -141,29 +147,7 @@ class PersonsListFragment : Fragment() {
             }
         }
 
-        return fragmentPersonsListBinding.root
     }
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        recyclerViewState = layoutManager.onSaveInstanceState()
-        outState.putParcelable("recycler_state", recyclerViewState)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (savedInstanceState != null) {
-            recyclerViewState = savedInstanceState.getParcelable("recycler_state")
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Restore RecyclerView state when coming back to the fragment
-        if (recyclerViewState != null) {
-            layoutManager.onRestoreInstanceState(recyclerViewState)
-        }
-    }
-
 
     private fun hideUpProgressBar() {
         lazyUpProgressBar.visibility = View.GONE
@@ -192,6 +176,7 @@ class PersonsListFragment : Fragment() {
         personListRefresher = fragmentPersonsListBinding.personListRefresh
         personsListRecycler = fragmentPersonsListBinding.personsListRecyclerView
         shimmerLayout = fragmentPersonsListBinding.shimmerLayout
+        endText = fragmentPersonsListBinding.endDataText
     }
 
     private fun setToolbar() {
@@ -204,9 +189,9 @@ class PersonsListFragment : Fragment() {
     }
 
     private fun refreshData() {
-
         personsAdapter.submitList(emptyList())
-        personsListViewModel.fetchPersons(totalFetch)
+        personsListViewModel.fetchPersons(initialFetch)
+        dataFetched = false
     }
 
 }

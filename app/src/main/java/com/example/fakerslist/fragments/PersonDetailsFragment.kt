@@ -40,8 +40,7 @@ class PersonDetailsFragment : Fragment() {
 
     private val personDetailsFragmentArgs: PersonDetailsFragmentArgs by navArgs()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         personDetailsBinding = FragmentPersonDetailsBinding.inflate(inflater, container, false)
