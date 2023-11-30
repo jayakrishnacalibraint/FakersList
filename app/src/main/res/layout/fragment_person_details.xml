@@ -1,241 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <variable
+            name="personDetails"
+            type="com.example.fakerslist.model.PersonData" />
+
+
+    </data>
+
+    <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".fragments.PersonDetailsFragment">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/personDetailImage"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/baseline_location_city_24"
-            android:text="@string/hello_blank_fragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-
-            />
-
-        <TextView
-            android:id="@+id/personDetailName"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/name"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            tools:context=".fragments.PersonDetailsFragment">
 
-        <TextView
-            android:id="@+id/personDetailEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:padding="5dp"
-            android:text="@string/email"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/personDetailImage"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailName" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/personDetailPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/phone"
-            android:textSize="16sp"
+            <ImageView
+                android:id="@+id/personDetailImage"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/hello_blank_fragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailEmail" />
+            <TextView
+                android:id="@+id/personDetailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_name+ personDetails.firstname + personDetails.lastname}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-        <TextView
-            android:id="@+id/personDetailBirthday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            <TextView
+                android:id="@+id/personDetailEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:padding="5dp"
+                android:text="@{@string/person_email+personDetails.email}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/personDetailImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailName" />
 
-            android:padding="5dp"
-            android:text="@string/birthday"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailPhone" />
+            <TextView
+                android:id="@+id/personDetailPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_phone+personDetails.phone}"
+                android:textSize="16sp"
 
-        <TextView
-            android:id="@+id/personDetailGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/gender"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailBirthday" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailEmail" />
 
-        <TextView
-            android:id="@+id/personDetailAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/address"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailGender" />
+            <TextView
+                android:id="@+id/personDetailBirthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
 
-        <TextView
-            android:id="@+id/personDetailStreet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/street"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailAddress" />
+                android:padding="5dp"
+                android:text="@{@string/person_birthday+personDetails.birthday}"
 
-        <TextView
-            android:id="@+id/personDetailStreetName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/streetname"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailStreet" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailPhone" />
 
-        <TextView
-            android:id="@+id/personDetailBuildingNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/buildingnumber"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailStreetName" />
+            <TextView
+                android:id="@+id/personDetailGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_gender+personDetails.gender}"
 
-        <TextView
-            android:id="@+id/personDetailCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/city"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailBuildingNumber" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailBirthday" />
 
-        <TextView
-            android:id="@+id/personDetailZipCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/zipcode"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailCity" />
+            <TextView
+                android:id="@+id/personDetailAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/address"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailGender" />
 
-        <TextView
-            android:id="@+id/personDetailCountry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/country"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailZipCode" />
+            <TextView
+                android:id="@+id/personDetailStreet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_street+personDetails.address.street}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailAddress" />
 
-        <TextView
-            android:id="@+id/personDetailCountryCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/countrycode"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailCountry" />
+            <TextView
+                android:id="@+id/personDetailStreetName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_street_name+personDetails.address.streetName}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailStreet" />
 
-        <TextView
-            android:id="@+id/personDetailLatitude"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/latitude"
-            android:textSize="16sp"
+            <TextView
+                android:id="@+id/personDetailBuildingNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_building_number+personDetails.address.buildingNumber}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailStreetName" />
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailCountryCode" />
+            <TextView
+                android:id="@+id/personDetailCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_city+personDetails.address.city}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailBuildingNumber" />
 
-        <TextView
-            android:id="@+id/personDetailLongitude"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="@string/longitude"
-            android:textSize="16sp"
+            <TextView
+                android:id="@+id/personDetailZipCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_zipcode+personDetails.address.zipcode}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailCity" />
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailLatitude" />
+            <TextView
+                android:id="@+id/personDetailCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_country+personDetails.address.country}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailZipCode" />
 
-        <TextView
-            android:id="@+id/personDetailWebsite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:padding="5dp"
-            android:text="@string/website"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/personDetailLongitude" />
+            <TextView
+                android:id="@+id/personDetailCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_county_code+personDetails.address.county_code}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailCountry" />
+
+            <TextView
+                android:id="@+id/personDetailLatitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_latitude+personDetails.address.latitude}"
+                android:textSize="16sp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailCountryCode" />
+
+            <TextView
+                android:id="@+id/personDetailLongitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_longitude+personDetails.address.longitude}"
+                android:textSize="16sp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailLatitude" />
+
+            <TextView
+                android:id="@+id/personDetailWebsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="5dp"
+                android:text="@{@string/person_website +personDetails.website}"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personDetailLongitude" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

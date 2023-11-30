@@ -8,9 +8,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fakerslist.BitmapHelper
 import com.example.fakerslist.databinding.SinglePersonItemBinding
 import com.example.fakerslist.fragments.PersonsListFragmentDirections
+import com.example.fakerslist.helpers.BitmapHelper
 import com.example.fakerslist.model.PersonData
 import dagger.hilt.android.qualifiers.ActivityContext
 
@@ -33,7 +33,7 @@ class PersonsAdapter(@ActivityContext private val context: Context) :
         val randomColor = colors[position % colors.size]
         holder.singlePersonItemBinding.root.setCardBackgroundColor(Color.parseColor(randomColor))
 
-        val personProfilePic =
+        val imageBitmap =
             BitmapHelper.generateInitialsImage(item.firstname, item.lastname, position)
         val personName = "${item.firstname}${item.lastname}"
         val personEmail = item.email
@@ -41,7 +41,7 @@ class PersonsAdapter(@ActivityContext private val context: Context) :
         //set the respective data for each view in the layout
         holder.singlePersonItemBinding.personNameText.text = personName
         holder.singlePersonItemBinding.personEmailText.text = personEmail
-        holder.singlePersonItemBinding.personImageView.setImageBitmap(personProfilePic)
+        holder.singlePersonItemBinding.personImageView.setImageBitmap(imageBitmap)
 
         val directions =
             PersonsListFragmentDirections.actionPersonsListFragmentToPersonDetailsFragment(

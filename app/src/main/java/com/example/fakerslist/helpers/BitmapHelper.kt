@@ -1,4 +1,4 @@
-package com.example.fakerslist
+package com.example.fakerslist.helpers
 
 import android.graphics.Bitmap
 import android.graphics.Canvas

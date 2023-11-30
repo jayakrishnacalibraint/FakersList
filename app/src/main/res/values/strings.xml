@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">FakersList</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="persons_list">Persons List</string>
     <string name="persons_details">Person Details</string>
@@ -20,21 +19,21 @@
     <string name="latitude">Latitude :</string>
     <string name="longitude">Longitude :</string>
     <string name="website">Website :</string>
-    <string name="person_name">Name :%1$s</string>
-    <string name="person_email">Email :%1$s</string>
-    <string name="person_phone">Phone:%1$s</string>
-    <string name="person_birthday">Birthday :%1$s</string>
-    <string name="person_gender">Gender:%1$s</string>
-    <string name="person_street">Street :%1$s</string>
-    <string name="person_street_name">StreetName :%1$s</string>
-    <string name="person_building_number">BuildingNumber :%1$s</string>
-    <string name="person_city">City :%1$s</string>
-    <string name="person_zipcode">ZipCode :%1$s</string>
-    <string name="person_country">Country :%1$s</string>
-    <string name="person_county_code">CountryCode :%1$s</string>
-    <string name="person_latitude">Latitude :%1$s</string>
-    <string name="person_longitude">Longitude :%1$s</string>
-    <string name="website_website">Website :%1$s</string>
+    <string name="person_name">Name : </string>
+    <string name="person_email">Email : </string>
+    <string name="person_phone">Phone: </string>
+    <string name="person_birthday">Birthday : </string>
+    <string name="person_gender">Gender: </string>
+    <string name="person_street">Street : </string>
+    <string name="person_street_name">StreetName : </string>
+    <string name="person_building_number">BuildingNumber : </string>
+    <string name="person_city">City : </string>
+    <string name="person_zipcode">ZipCode : </string>
+    <string name="person_country">Country : </string>
+    <string name="person_county_code">CountryCode : </string>
+    <string name="person_latitude">Latitude : </string>
+    <string name="person_longitude">Longitude : </string>
+    <string name="person_website">Website : </string>
     <string name="krishna">Krishna</string>
     <string name="krishna139_gmail_com">Krishna139@gmail.com</string>
     <string name="no_more_data">No more Data</string>
